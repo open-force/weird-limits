@@ -1,4 +1,4 @@
-# Weird Limits
+# Weird Limits (https://github.com/open-force/weird-limits/)
 
 ***Inspired by [wtfapex](https://github.com/ChuckJonas/wtfapex)***
 
