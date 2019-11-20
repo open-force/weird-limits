@@ -22,6 +22,14 @@ Sessions in Lightning have reduced privileges.
 
 https://salesforce.stackexchange.com/questions/110515/getting-session-id-in-lightning
 
+### Lookup Relationships can be configured not to lock the parent
+
+Master-detail relationships always lock the parent on edits to the child. For lookups, you have the ability to configure whether this happens through your choice about what happens on record delete. One choice locks, one choice does not.
+
+> Locks only occur if lookup relationship is not configured to clear the value of this field if the lookup record is deleted.
+
+http://resources.docs.salesforce.com/194/0/en-us/sfdc/pdf/record_locking_cheatsheet.pdf
+
 ### You can create custom Apex classes with the same names as standard Apex classes
 
 Salesforce will totally let you create an Apex class called Test. Don't do that :)
