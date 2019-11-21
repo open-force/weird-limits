@@ -2,13 +2,19 @@
 
 ***Inspired by [wtfapex](https://github.com/ChuckJonas/wtfapex)***
 
+This is a collection of Salesforce limits that are esoteric, unusual, interesting, or relatively unknown, as well as some other platform oddities.
+
+The intent of this document is to shine a bit of light into some of the odd corners of a complicated platform, in the hope that knowing one of these wrinkles might help you avoid getting caught out by one of these.
+
 ### CPU limits
 
-So much weirdness. Measuring is inconsistent, blame is often wrong.
+The current challenge with the 10-second CPU limit (shared across namespaces during execution contexts) is twofold:
+1. It's not clear who the worst offender is: it can be a bit of a game of hot potato where the last thing to run (often a piece of Apex code) looks like it is the reason the limit was hit when in fact the vast majority of the time was consumed elsewhere. This code was just the last thing to run.
+2. Tracing usage per element. It's not clear, and difficult to debug, what slices of the CPU limit were consumed by each process, flow, workflow, apex class, trigger, etc.
 
 ### Heap size
 
-Also weird.
+Heap size is measured at intervals, and consequently you can violate it as long as you are back under the limit by the next interval. Certainly not recommended!
 
 https://salesforce.stackexchange.com/questions/190859/limits-getheapsize-wildly-inaccurate/190868#190868
 
