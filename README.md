@@ -127,8 +127,20 @@ https://developer.salesforce.com/docs/component-library/documentation/lwc/lwc.ap
 
 ### You can't remove Aura components from a managed package once they have been released
 
-Not much else to say for this one, other than ugh.
+Not much else to say for this one, other than ugh. There are a bunch of different components that can't be removed. There may be some hope on the horizon for this one.
 
 ### Custom Metadata Type records created in a subscriber org will block uninstall of the package until they are removed
 
 ### BatchApexErrorEvent Apex handlers cannot be added to packages (but classes that fire the event can)
+
+### packaging tests can fail which have passed in metadata deploy 
+
+IIRC you need to wrap all mocked callouts in Test.startTest() and stopTest(), which is good practice anyway
+
+### Post install will fail in certain operations (typically security checks) which run under with sharing
+
+And more confusingly inherited sharing called from without sharing all of your postinstall code paths should probably remain within without sharing classes
+
+### Push upgrades can invoke apex as part of the push upgrade, and this runs with the same permissions as post install
+
+This and the two prior are from James M.
