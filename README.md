@@ -18,6 +18,18 @@ Heap size is measured at intervals, and consequently you can violate it as long 
 
 https://salesforce.stackexchange.com/questions/190859/limits-getheapsize-wildly-inaccurate/190868#190868
 
+### For Loops w/ queryMore don't work with Custom Metadata Types
+
+There is a known bug with querying Custom Metadata Type records if you're using the for(MyRecord__mdt record : [SELECT ]) {} structure.
+
+The results are quite unreliable. The workaround is to query for the data in its entirety, then loop over it after the query, instead of doing it all as one operation:
+
+List<MyRecord__mdt> records = [SELECT ...];
+for(MyRecord__mdt record : records) {
+}
+
+https://success.salesforce.com/issues_view?id=a1p3A0000008x3ZQAQ&title=custom-metadata-type-soql-not-giving-proper-results
+
 ### Boxcarred Lightning Actions share limits (Fixed in Winter '20)
 
 https://releasenotes.docs.salesforce.com/en-us/winter20/release-notes/rn_lc_predictable_apex_limits.htm
